@@ -22,7 +22,7 @@ class History extends Component {
   }
 
   componentWillMount() {
-    fetch('http://localhost:3000/history?email=' + this.props.navigator.navigationContext._currentRoute.email, {
+    fetch('http://10.6.28.57:3000/history?email=' + this.props.navigator.navigationContext._currentRoute.email, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

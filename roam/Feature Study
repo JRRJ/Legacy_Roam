@@ -1,0 +1,38 @@
+Currently need:
+Changed Pending
+
+
+
+Feature Study
+
+Improve server
+  [COMPLETE] Store completed roams with User and Date information
+
+
+Add user history
+  Easy, will require another page and new API route.
+  The end result will list previous roams.
+
+Add user photos
+  easy but inconvenient way: use url.
+  could also do react-native-image-picker, but where would we store the images?
+
+
+Uber
+  Potentially very difficult.  Lets give it a try, see how hard it is to test.
+
+
+Neo4J NOTES
+
+to delete all nodes:
+MATCH (n) DETACH
+DELETE n
+
+GET COMPLETED, UNRATED ROAMS
+MATCH (n:User {email:"e@e.com"})-[:CREATED]->(m:Roam{status:"Completed"}) return m
+
+RATE ROAMS
+MATCH (n:User {email:"e@e.com"})-[r]->(m:Roam{status:"Completed"}) CREATE (n)-[:ROAMED{rated:5}]->(m) DELETE r return m
+
+GET RATED ROAMS, USERS
+MATCH (n:User {email:"e@e.com"})-[r:ROAMED]->(m:Roam{status:"Completed"})<--(p:User) return r,m,p

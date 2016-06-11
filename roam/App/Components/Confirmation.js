@@ -19,7 +19,7 @@ class Confirmation extends Component {
 
     const fetchRoam = function(coordinates, bounds) {
       console.log('sending ROAM request');
-      fetch('http://localhost:3000/roam', {
+      fetch('http://10.6.28.57:3000/roam', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -103,7 +103,7 @@ class Confirmation extends Component {
 
     this.props.navigator.pop();
 
-    fetch('http://localhost:3000/cancel', {
+    fetch('http://10.6.28.57:3000/cancel', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

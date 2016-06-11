@@ -48,7 +48,7 @@ class SignUp extends Component {
         var email = data.email;
         var id = data.id;
         var picture = data.picture.data.url;
-        fetch('http://localhost:3000/signup', {
+        fetch('http://10.6.28.57:3000/signup', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -99,7 +99,7 @@ class SignUp extends Component {
     //ensure all fields in our state is not empty
     if (this.state.firstName !== '' && this.state.lastName !== '' && this.state.password !== '' && this.state.passwordAgain !== '' && (this.state.password === this.state.passwordAgain) && re.test(this.state.email)) {
 
-      fetch('http://localhost:3000/signup', {
+      fetch('http://10.6.28.57:3000/signup', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -203,13 +203,6 @@ class SignUp extends Component {
           underlayColor="white" >
             <Text style={styles.buttonText}> Create Account </Text>
         </TouchableHighlight>
-        {/* This is the loading animation when isLoading is set to true */}
-        <ActivityIndicatorIOS
-          animating={this.state.isLoading}
-          color="#111"
-          size="large"></ActivityIndicatorIOS>
-        {showErr}
-
         <LoginButton
           style={styles.button}
           readPermissions={["email","user_friends", "public_profile"]}
@@ -229,7 +222,14 @@ class SignUp extends Component {
             }
           }
           onLogoutFinished={() => alert("logout.")}/>
+        {/* This is the loading animation when isLoading is set to true */}
+        <ActivityIndicatorIOS
+          animating={this.state.isLoading}
+          color="#111"
+          size="large"></ActivityIndicatorIOS>
+        {showErr}
       </Image>
+
     )
   }
 }

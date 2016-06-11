@@ -41,7 +41,7 @@ class RateExperience extends Component {
     })
     if(this.state.rating > 0){
       console.log('Sending rating (but not really yet lol');
-      fetch('http://localhost:3000/finished', {
+      fetch('http://10.6.28.57:3000/finished', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

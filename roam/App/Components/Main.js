@@ -51,7 +51,7 @@ class Main extends Component {
         var email = data.email;
         var id = data.id;
         var picture = data.picture.data.url;
-        fetch('http://localhost:3000/signup', {
+        fetch('http://10.6.28.57:3000/signup', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -67,7 +67,7 @@ class Main extends Component {
           })
         })
         .then((res) => {
-          fetch('http://localhost:3000/finished?email=' + email.toLowerCase(), {
+          fetch('http://10.6.28.57:3000/finished?email=' + email.toLowerCase(), {
             method: 'GET',
             headers: {
               'Accept': 'application/json',
@@ -148,7 +148,7 @@ class Main extends Component {
     }
     //If email and password exists on the database, log the user into the select time page
     if(this.state.email !== '' && re.test(this.state.email) && this.state.password !== ''){
-      fetch('http://localhost:3000/signin', {
+      fetch('http://10.6.28.57:3000/signin', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -167,7 +167,7 @@ class Main extends Component {
           this.setState({errorMessage: res.message, error: true, isLoading: false});
         } else{
           //check to see if user has recent roams
-          fetch('http://localhost:3000/finished?email=' + this.state.email.toLowerCase(), {
+          fetch('http://10.6.28.57:3000/finished?email=' + this.state.email.toLowerCase(), {
             method: 'GET',
             headers: {
               'Accept': 'application/json',
