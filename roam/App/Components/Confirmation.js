@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {Text, View, Image, TouchableHighlight, ListView} from 'react-native'
+import {Text, View, Image, TouchableHighlight, ListView, Linking} from 'react-native'
+import Geocoder from 'react-native-geocoder';
+
 var styles = require('./Helpers/styles');
 var _ = require('underscore');
 
@@ -119,7 +121,26 @@ class Confirmation extends Component {
     .catch((error) => {
       console.log('Error handling submit:', error);
     });
+  }
 
+  callUber(){
+    var address = this.state.roam.address
+    Geocoder.geocodeAddress(address)
+    .then((res) => {
+      console.log('map', res[0].position.lat, res[0].position.lng);
+      var client_id = 'WxgWqJOteJVqrKk3aDC51m_ZqV6LYWQq';
+      var dropoffAdd = encodeURIComponent(address);
+      var dropoffLat = res[0].position.lat;
+      var dropoffLng = res[0].position.lng;
+      var dropoffName = encodeURIComponent(this.state.roam.venue);
+      var url = 'uber://?client_id=' + client_id +
+      '&action=setPickup&pickup=my_location' +
+      '&dropoff[latitude]=' + dropoffLat + '&dropoff[longitude]=' + dropoffLng + 
+      '&dropoff[nickname]=' + dropoffName + '&dropoff[formatted_address]=' + dropoffAdd;
+      console.log(url);
+      //This will only work on an actual iPhone, not in simulator
+      Linking.openURL(url);
+    });
   }
 
   render() {
@@ -142,6 +163,19 @@ class Confirmation extends Component {
         source={require('../../imgs/uni.jpg')}>
         <Text style={styles.title}> roam </Text>
           {venueInfo}
+        <TouchableHighlight
+          style={styles.uberButton}
+          onPress={this.callUber.bind(this)}
+          underlayColor="white" >
+          <View style={styles.uberButtonContainer}>
+            <Image 
+              source={require('../../imgs/uber_rides_api_icon_1x_36px.png')}>
+            </Image>
+            <Text style={styles.uberButtonText}> 
+
+            Ride there with Uber</Text>
+          </View>
+        </TouchableHighlight>
           <TouchableHighlight
             style={styles.button}
             onPress={this.handleCancel.bind(this)}

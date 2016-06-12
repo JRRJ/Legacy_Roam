@@ -43,12 +43,31 @@ const styles = StyleSheet.create({
     color: 'white',
     alignSelf: 'center'
   },
+  uberButtonContainer: {
+    marginRight: 55,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
   button: {
     height: 50,
     width: 300,
     flexDirection: 'row',
     backgroundColor: '#ff0066',
     borderRadius:10,
+    marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  uberButton: {
+    height: 50,
+    width: 300,
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
     alignSelf: 'center',

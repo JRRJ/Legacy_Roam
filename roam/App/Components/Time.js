@@ -113,11 +113,6 @@ class Time extends Component {
           onPress={this.handleHistory.bind(this)} >
             <Text style={styles.buttonText}> View History </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.iBeacon.bind(this)}>
-          <Text>iBeacon</Text>
-        </TouchableHighlight>
       </Image>
     );
   }
